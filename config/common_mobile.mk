@@ -1,12 +1,12 @@
 # Inherit common mobile Lineage stuff
-$(call inherit-product, vendor/lineage/config/common.mk)
+$(call inherit-product, vendor/aosp/config/common.mk)
 
 # Include AOSP audio files
 $(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage14.mk)
-include vendor/lineage/config/aosp_audio.mk
+include vendor/aosp/config/aosp_audio.mk
 
 # Include Lineage audio files
-include vendor/lineage/config/lineage_audio.mk
+include vendor/aosp/config/aosp_audio.mk
 
 # Default notification/alarm sounds
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -15,34 +15,33 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Apps
 PRODUCT_PACKAGES += \
-    Backgrounds \
     Glimpse
 
 ifeq ($(PRODUCT_TYPE), go)
 PRODUCT_PACKAGES += \
-    TrebuchetQuickStepGo
+    Launcher3QuickStepGo
 
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    TrebuchetQuickStepGo
+    Launcher3QuickStepGo
 else
 PRODUCT_PACKAGES += \
-    TrebuchetQuickStep
+    Launcher3QuickStep
 
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    TrebuchetQuickStep
+    Launcher3QuickStep
 endif
 
 PRODUCT_PACKAGES += \
-    TrebuchetOverlay
+    Launcher3Overlay
 
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
 
-ifneq ($(WITH_LINEAGE_CHARGER),false)
+ifneq ($(WITH_AOSP_CHARGER),false)
 PRODUCT_PACKAGES += \
-    lineage_charger_animation \
-    lineage_charger_animation_vendor
+    aosp_charger_animation \
+    aosp_charger_animation_vendor
 endif
 
 # Customizations
@@ -91,6 +90,6 @@ PRODUCT_PACKAGES += \
 
 # Themes
 PRODUCT_PACKAGES += \
-    LineageBlackTheme \
+    AospEnhancedBlackTheme \
     ThemePicker \
     ThemesStub
